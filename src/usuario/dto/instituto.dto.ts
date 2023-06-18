@@ -1,9 +1,6 @@
 import { IsBoolean, IsEmpty, IsNumber, IsString, isEmpty } from "class-validator";
 
 export class InstitutosDto {
-    //@IsString()
-   // @IsNotEmpty() van obligatorios en los dto
-
    @IsString()
    @IsEmpty()
    nombre: string;

@@ -2,7 +2,7 @@ import { IsBoolean, IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, isNotEmp
 
 export class CarrerasDto  {
     //@IsString()
-   // @IsNotEmpty() van obligatorios en los dto
+   // @IsNotEmpty()
 
     @IsString()
     @IsNotEmpty()
