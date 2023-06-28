@@ -1,26 +1,39 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUsuarioDto } from './dto/create-usuario.dto';
-import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+import { Delete, Injectable } from '@nestjs/common';
+
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { CarrerasEntity } from './entities/carreras.entity';
+import { CarrerasDto } from './dto/carreras.dto';
+import { UpdatecarrerasDto } from './dto/update-carreras.dto';
+
 
 @Injectable()
-export class UsuarioService {
-  create(createUsuarioDto: CreateUsuarioDto) {
-    return 'This action adds a new usuario';
+export class CarrerasService {
+  constructor (@InjectRepository(CarrerasEntity) private carrerasRepository: Repository<CarrerasEntity>){}
+
+  async create(carrerasDto: CarrerasDto):Promise<CarrerasEntity> {
+    const carreras: CarrerasEntity = await this.carrerasRepository.save(carrerasDto);
+        return carreras;
+        //se guada en la bd la variable que se crea en la variable de la funcion
   }
 
-  findAll() {
-    return `This action returns all usuario`;
+  async findAll() :Promise<CarrerasEntity [] >{
+    const carreras: CarrerasEntity [] = await this.carrerasRepository.find();
+        return carreras;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+  async findOne(id: string) :Promise<CarrerasEntity> {
+    const carreras: CarrerasEntity = await this.carrerasRepository.findOneBy({id});
+        return carreras;
   }
 
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+  async update(id: string, updatecarreras: UpdatecarrerasDto) :Promise<UpdateResult | undefined> {
+    const carreras: UpdateResult = await this.carrerasRepository.update(id, updatecarreras);
+        return carreras;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} usuario`;
+  async remove(id: string) :Promise<DeleteResult | undefined> {
+    const carreras: DeleteResult = await this.carrerasRepository.delete(id);
+        return carreras;
   }
 }

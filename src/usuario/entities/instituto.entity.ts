@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { CarreraEntity } from "./carreras.entity";
+import { CarrerasEntity } from "./carreras.entity";
 import { UsuarioEntity } from "./usuario.entity";
 
 @Entity('instituto')
-export class InstitutoEntity extends UsuarioEntity{
+export class InstitutosEntity extends UsuarioEntity{
 
     @Column()
     id: string;
@@ -14,8 +14,6 @@ export class InstitutoEntity extends UsuarioEntity{
     @Column()
     ubicacion: string;
 
-    //tiempo de duracion
-
     @Column()
     numero_carreras: number;
 
@@ -25,6 +23,9 @@ export class InstitutoEntity extends UsuarioEntity{
     @Column()
     cupos_disponibles: number;
 
-    @OneToMany(() => CarreraEntity, (carreras) => carreras.Instituto)
-    carreras: CarreraEntity[]
+    @Column()
+    cantidad_profesores: number;
+
+    @OneToMany(() => CarrerasEntity, (carreras) => carreras.Instituto)
+    carreras: CarrerasEntity[]
 }

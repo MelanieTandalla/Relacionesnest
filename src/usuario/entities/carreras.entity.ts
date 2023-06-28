@@ -1,9 +1,9 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from "typeorm";
-import { InstitutoEntity } from "./instituto.entity";
+import { InstitutosEntity } from "./instituto.entity";
 import { UsuarioEntity } from "./usuario.entity";
 
 @Entity('carrera')
-export class CarreraEntity extends UsuarioEntity{
+export class CarrerasEntity extends UsuarioEntity{
 
     @Column()
     id: string;
@@ -11,19 +11,17 @@ export class CarreraEntity extends UsuarioEntity{
     @Column()
     nombre: string;
 
+    //duracion de la carrera
     @Column()
-    ubicacion: string;
-    
-    //tiempo de duracion
-    @Column()
-    numero_carreras: number;
-
-    @Column()
-    numero_cursos: number;
+    periodos: string;
 
     @Column()
     cupos_disponibles: number;
 
-    @ManyToOne(() => InstitutoEntity, (instituto) => instituto.carreras)
-    Instituto: InstitutoEntity
+    @Column()
+    tutores_disponibles: string
+
+
+    @ManyToOne(() => InstitutosEntity, (instituto) => instituto.carreras)
+    Instituto: InstitutosEntity
 }
